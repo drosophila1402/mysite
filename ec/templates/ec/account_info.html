@@ -1,0 +1,25 @@
+{% extends 'ec/account.html' %}
+
+{% load humanize %}
+
+{% block title %}
+{{ title }} | 傾着物
+{% endblock %}
+
+{% block product_list %}
+    <table>
+        <tr>
+            <td>username: </td>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <td>email: </td>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <td>name: </td>
+            <td>{{ user.last_name }}{{ user.first_name }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'account_edit' %}">編集</a>
+{% endblock %}

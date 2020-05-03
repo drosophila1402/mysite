@@ -1,0 +1,16 @@
+{% extends 'base/news_base.html' %}
+
+{% block title %}
+{{ title }} | 傾着物
+{% endblock %}
+
+
+{% block main_content %}
+    {% for info in category_infos %}
+        <div class="col-xs-12 col-sm-6">
+            <div class="info">
+                <p><a href='{% url 'info_detail' info.id %}'>{{ info.title }}</a></p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

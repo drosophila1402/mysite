@@ -1,0 +1,24 @@
+{% extends 'base/news_base.html' %}
+
+{% block title %}
+{{ title }} | 傾着物
+{% endblock %}
+
+
+{% block main_content %}
+    {% for info in infos %}
+        {% if forloop.first %}
+            <div class="col-xs-12">
+                <div class="info">
+                    <h3><a href='{% url 'info_detail' info.id %}'>{{ info.title }}</a></h3>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-xs-12 col-sm-6">
+                <div class="info">
+                    <p><a href='{% url 'info_detail' info.id %}'>{{ info.title }}</a></p>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

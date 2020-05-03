@@ -1,0 +1,41 @@
+{% extends 'base/news_base.html' %}
+
+{% block title %}
+{{ title }} | 傾着物
+{% endblock %}
+
+
+{% block main_content %}
+    {% for category in info.category.all %}
+    <a class="btn btn-primary" href="{% url 'info_category' category.id %}">{{ category.name }}</a>
+    {% endfor %}
+    <p>{{ info.text | safe}}</p>
+    <div class="comment-area">
+        {% for comment in info.comments.all %}
+            {% if not comment.approve %}
+                <div class="comment">
+                    <div class="date">{{ comment.created_date }}</div>
+                    <strong>{{ comment.author }}</strong>
+                    <p>{{ comment.text | linebreaks }}</p>
+                </div>
+            {% endif %}
+        {% empty %}
+            <p>まだコメントはありません</p></p>
+        {% endfor %}
+        <div class="row">
+        <div class="col-xs-12 col-sm-6">
+        <h4>コメントを投稿</h4>
+        <form method="POST" class="">
+            {% csrf_token %}
+            {% for field in form %}
+                <label>{{ field.label }}</label>
+                {{ field.errors }}
+                {{ field }}
+            {% endfor %}
+            <input type="submit" class="save btn" value="送信"></input>
+        </form>
+        </div>
+        </div>
+    </div>
+{% endblock %}
+

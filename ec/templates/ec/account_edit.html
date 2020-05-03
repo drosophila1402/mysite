@@ -1,0 +1,33 @@
+{% extends 'ec/account.html' %}
+
+{% load humanize %}
+
+{% block title %}
+{{ title }} | 傾着物
+{% endblock %}
+
+{% block product_list %}
+    <h2>アカウント情報 更新</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>username: </td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>email: </td>
+                <td>{{ form.email }}</td>
+            </tr>
+            <tr>
+                <td>first_name: </td>
+                <td>{{ form.first_name }}</td>
+            </tr>
+            <tr>
+                <td>last_name: </td>
+                <td>{{ form.last_name }}</td>
+            </tr>
+        </table>
+        <input type="submit" value="更新">
+    </form>
+{% endblock %}

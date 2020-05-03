@@ -1,0 +1,31 @@
+{% extends 'ec/account.html' %}
+
+{% load humanize %}
+
+{% block title %}
+{{ title }} | 傾着物
+{% endblock %}
+
+{% block product_list %}
+<div class="row">
+<div class="flex non-title-container">
+    {% for product in products %}
+        <div class='col-xs-6 col-sm-4 col-lg-3 product'>
+            <div class=" image-area">
+                <a href='{% url 'product_detail' product.id %}'>
+                    <p  class="image" style="background-image: url('{{ product.image.url }}')"></p>
+                    <div class="">
+                        <h5>{{ product.name }}</h5>
+                        {% if product.quantity == 0 %}
+                            <p>SOLD OUT</p>
+                        {% else %}
+                            <p>¥{{ product.price | intcomma }}</p>
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}

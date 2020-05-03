@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="col-xs-12 col-md-9 main-container">
+    <h2 style="color:red;">main container</h2>
+    
+    {% block main_content %}
+    {% endblock %}
+    
+</div>
+<div class='col-xs-3 hidden-sm hidden-xs side-container'>
+    <h2 style="color:red;">side container</h2>
+    
+    {% block side_content %}
+    {% endblock %}
+    
+</div>
+<div class='col-xs-12 hidden-md hidden-lg side-container'>
+    <h2 style="color:red;">below container</h2>
+    
+    {% block below_content %}
+    {% endblock %}
+    
+</div>
+{% endblock %}

@@ -1,0 +1,4 @@
+カスタムユーザーモデル作成時にsettings.pyにて
+    AUTH_USER_MODEL='EC.CustomUser'
+とする
+

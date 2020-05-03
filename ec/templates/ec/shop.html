@@ -1,0 +1,17 @@
+{% extends 'base/shop_base.html' %}
+
+{% block title %}
+    {{ title }} | 傾着物
+{% endblock %}
+
+{% block title_bar %}
+    {% if search_word %}
+        Search results for {{ search_word }}
+    {% else %}
+        {{ title }}
+    {% endif %}
+{% endblock %}
+
+{% block product_list %}
+    {% include 'parts/product_container.html' %}
+{% endblock %}

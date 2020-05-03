@@ -1,0 +1,332 @@
+/*
+.header-logo {
+    font-size: 30px;
+    margin: 20px auto;
+    width: 50%;
+    text-align: center;
+}
+
+body {
+    height: 1000px;
+    width: 100%;
+}
+
+header {
+    width: 100%;
+    margin: 0 auto;
+    
+}
+
+
+
+h1 {
+    margin: 10px;
+    font-weight: normal;
+}
+
+
+
+
+
+
+.main-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.shop-main-container {
+    display: flex;
+}
+
+.side-container {
+    vertical-align: top;
+    width: 20%;
+}
+
+.product-container {
+    vertical-align: top;
+    width: 80%;
+    
+}
+
+.product-container-2 {
+    display: flex;
+    position: relative;
+}
+
+.pick-up-container {
+    clear: left;
+}
+
+.product {
+    width: 25%;
+    height: 10%;
+    float: left;
+}
+
+
+.sub-title {
+    text-align: center;
+    border-bottom: 1px solid gray;
+    padding-top: 20px;
+    margin: 0 auto;
+}
+
+
+
+.product-img {
+    width: 50%;
+    
+}
+
+.product-img img{
+    float: left;
+    width: 100%;
+
+}
+
+.product-des {
+    width: 50%;
+    padding-left: 20px;
+}
+
+.product-des-2 {
+    position: absolute;
+    bottom: 0;
+}
+
+
+#wrapper {
+    float: left;
+    width: 25%;
+    position: relative;
+}
+#wrapper:before {
+    content:"";
+    display: block;
+    padding-top: 10%; 
+}
+
+
+p {
+    font-size: 20px;
+}
+
+.product img{
+    width: 90%;
+}
+
+.contact-form p label {
+    border: 1px solid red;
+    
+    margin: 20px;
+}
+*/
+
+p {
+    font-size: 14px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    text-decoration: line-through;
+}
+
+
+
+
+.header-list {
+    margin-top: 20px;
+}
+
+.header-list ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.header-list li {
+    vertical-align: middle;
+    float: left;
+    text-align: center;
+    flex-grow: 1;
+    font-size: 13px;
+}
+
+
+ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+footer {
+    margin: 20px 0px 20px 0px;
+}
+footer ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0 auto;
+}
+
+footer li {
+    vertical-align: middle;
+    float: left;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.header-logo {
+    text-align: center;
+}
+
+
+
+.sub-title {
+    text-align: center;
+    border-bottom: 1px solid gray;
+    padding-top: 20px;
+    margin: 0 auto;
+}
+
+.underline {
+    border-bottom: 1px solid gray;
+    width: 70px;
+    margin: 0 auto;
+}
+
+/*--------------------------------------------*/
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main {
+    margin: 0 auto;
+}
+
+.product {
+    margin-bottom: 20px;
+}
+
+.non-title-container {
+    margin-top: 60px;
+}
+
+.side-container h4 {
+    text-align: center;
+    border: 1px solid black;
+    padding: 3px 0px;
+}
+
+.product-detail-container {
+    margin: 60px 0 20px;
+}
+
+
+img {
+    border: 1px solid black;
+}
+
+.show-all a {
+    border: 1px solid black;
+    display: block;
+    padding: 3px 0px;
+}
+
+.side-container p {
+    margin-left: 10px;
+}
+
+
+.side-content:hover .side-title {
+    background: black;
+    color: white;
+    transition: 1.0s;
+}
+
+
+.image {
+    display: block;
+    height: 0;
+    width: 100%;
+    padding-bottom: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.bi-star-fill {
+    color: gold;
+}
+
+.info {
+    border: 1px solid black;
+}
+
+.info {
+    display: block;
+    height: 0;
+    width: 100%;
+    padding-bottom: 50%;
+}
+
+.price {
+    color: green;
+}
+
+.a-submit:hover {
+    text-decoration: line-through;
+}
+
+.product-container {
+    position: relative;
+}
+
+.paginator {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
+
+.img-container {
+    position: relative;
+}
+
+.fav-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+}
+
+.img-container:hover .fav-btn {
+    opacity: 1;
+}
+
+.errorlist li {
+    color: red;
+}
+
+.error {
+    color: red;
+}
+
+.comment-area {
+    border-top: 1px solid gray;
+}
+
+.comment {
+    border-bottom: 1px solid gray;
+}
+
+.aaa {
+    
+}

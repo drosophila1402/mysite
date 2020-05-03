@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+
+{% load humanize %}
+
+{% block title %}
+{{ title }} | 傾着物
+{% endblock %}
+
+{% block drop_down %}
+<div class="btn-group hidden-md hidden-lg hidden-xl">
+    <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Category
+    </button>
+    <div class="dropdown-menu">
+        <ul>
+            <li><a class="dropdown-item" href="">Sample</a></li>
+            <li><a class="dropdown-item" href="">Sample</a></li>
+            <li><a class="dropdown-item" href="">Sample</a></li>
+            <li><a class="dropdown-item" href="">Sample</a></li>
+            <li><a class="dropdown-item" href="">Sample</a></li>
+        </ul>
+        
+    </div><!-- /.dropdown-menu -->
+</div><!-- /.btn-group -->
+{% endblock %}
+
+
+
+{% block content %}
+    <div class='col-xs-3 hidden-sm hidden-xs side-container'>
+        {% include 'parts/account_sidebar.html' %}
+    </div>
+    
+    <div class="col-xs-12 col-md-9 product-container">
+        {% block product_list %}
+        <h2>Main content</h2>
+        <h2>Main content</h2>
+        <h2>Main content</h2>
+        <h2>Main content</h2>
+        
+        {% endblock %}
+    </div>
+    
+    <div class='col-xs-12 hidden-md hidden-lg side-container'>
+        {% include 'parts/account_sidebar.html' %}
+    </div>
+{% endblock %}
