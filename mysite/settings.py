@@ -25,7 +25,9 @@ SECRET_KEY = '($u(s*cl34%5i844g)$*)k^oi#zkn=+)=hlnr$^y6+0r#3owyw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['37c00df061944e218fe3997cd5435c38.vfs.cloud9.us-east-2.amazonaws.com']
+ALLOWED_HOSTS = [
+    '37c00df061944e218fe3997cd5435c38.vfs.cloud9.us-east-2.amazonaws.com',
+    'drosophila.pythonanywhere.com']
 
 
 # Application definition
