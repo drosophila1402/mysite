@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '37c00df061944e218fe3997cd5435c38.vfs.cloud9.us-east-2.amazonaws.com',
-    'drosophila.pythonanywhere.com']
+    'pythonanywhere.com']
 
 
 # Application definition
