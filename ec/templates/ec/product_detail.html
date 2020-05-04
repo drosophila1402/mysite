@@ -18,10 +18,14 @@
             <p class="image" style="background-image: url('{{ product.image.url }}')"></p>
         </div>
         <div class="col-xs-12 col-sm-6 product-des-1">
-            <p>ブランド名: {{ product.brand }}</p>
-            <p>素材: {{ product.material }}</p>
-            <p>説明: {{ product.description | linebreaks}}</p>
-            <p>価格: ¥{{ product.price | intcomma }}</p>
+            <h4>ブランド名</h4>
+            <p>{{ product.brand }}</p>
+            <h4>素材</h4>
+            <p>{{ product.material }}</p>
+            <h4>商品説明</h4>
+            <p>{{ product.description | linebreaks}}</p>
+            <h4>価格</h4>
+            <p class="price">¥{{ product.price | intcomma }}</p>
             
             <!--お気に入りボタン-->
             {% if user.is_authenticated %}
