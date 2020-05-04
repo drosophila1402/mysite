@@ -42,10 +42,17 @@ def cart_list(request):
     else:
         products = []
     
+    if not amount:
+        amount = []
+    
     total_price = 0
+    '''
     for product in products:
         total_price += product.price
-        
+    '''
+    for product, num in zip(products, amount):
+        total_price += product.price * num
+       
     return products, amount, total_price
 
 
@@ -235,6 +242,39 @@ def account_edit(request):
 
 
 # shop pages
+class ProductDetailView(View):
+    def get(self, request, *args, **kwargs):
+        categories = Category.objects.all()
+        product = get_object_or_404(Product, id=product_id)
+        cart_products, amount, total_price = cart_list(request)
+        title = product.name
+        
+        context = {
+            'product': product,
+            'categories': categories,
+            'title': title,
+            'cart_products': cart_products,
+            'amount': amount,
+            'total_price': total_price,
+        }
+    
+        return render(request, 'ec/product_detail.html', context)
+
+    def post(self, request, *args, **kwargs):
+        
+        context = {
+            'product': product,
+            'categories': categories,
+            'title': title,
+            'cart_products': cart_products,
+            'amount': amount,
+            'total_price': total_price,
+            'number': request.POST['number'],
+        }
+        return render(request, 'ec/product_detail.html', context)
+
+product_detail = ProductDetailView.as_view()
+
 
 def product_detail(request, product_id):
     categories = Category.objects.all()
@@ -242,13 +282,28 @@ def product_detail(request, product_id):
     cart_products, amount, total_price = cart_list(request)
     title = product.name
     
-    
     context = {'product': product,
                'categories': categories,
                'title': title,
                'cart_products': cart_products,
                'amount': amount,
-               'total_price': total_price,}
+               'total_price': total_price,
+    }
+    
+    if request.method == 'POST':
+        #if 'update' in request.POST:
+        cart = request.session.get('cart')
+        amount = request.session.get('amount')
+        if cart:
+        #    filtered_cart = []
+         #   filtered_amount = []
+            for p_id, num in zip(cart, amount):
+                if p_id == request.POST['product-id']:
+                    index = cart.index(p_id)
+                    amount[index] = request.POST['number']
+            request.session['cart'] = cart
+            request.session['amount'] = amount
+        return redirect(request.META['HTTP_REFERER'])       
     
     return render(request, 'ec/product_detail.html', context)
     
@@ -363,8 +418,8 @@ def cart_add2(request, product_id):
     request.session['cart'] = cart
     return redirect(request.META['HTTP_REFERER'])
     
-    
-    
+
+@require_POST
 def cart_add(request, product_id):
     cart = request.session.get('cart', [])
     amount = request.session.get('amount', [])
@@ -381,7 +436,6 @@ def cart_add(request, product_id):
     
     return redirect(request.META['HTTP_REFERER'])
     
-
 def cart(request):
     title = 'CART'
     cart_products, amount, total_price = cart_list(request)
@@ -393,3 +447,34 @@ def cart(request):
     }
     
     return render(request, 'ec/cart.html', context)
+ 
+@require_POST
+def cart_update(request, product_id, number):
+    cart = request.session.get('cart')
+    amount = request.session.get('amount')
+    if cart:
+    #    filtered_cart = []
+     #   filtered_amount = []
+        for p_id, num in zip(cart, amount):
+            if p_id == product_id:
+                index = cart.index(p_id)
+                amount[index] = number
+        request.session['cart'] = cart
+        request.session['amount'] = amount
+    return redirect(request.META['HTTP_REFERER'])
+
+    
+@require_POST
+def cart_delete(request, product_id):
+    cart = request.session.get('cart')
+    amount = request.session.get('amount')
+    if cart:
+        filtered_cart = []
+        filtered_amount = []
+        for p_id, num in zip(cart, amount):
+            if p_id != product_id:
+                filtered_cart.append(p_id)
+                filtered_amount.append(num)
+        request.session['cart'] = filtered_cart
+        request.session['amount'] = filtered_amount
+    return redirect(request.META['HTTP_REFERER'])

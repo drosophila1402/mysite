@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '($u(s*cl34%5i844g)$*)k^oi#zkn=+)=hlnr$^y6+0r#3owyw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '37c00df061944e218fe3997cd5435c38.vfs.cloud9.us-east-2.amazonaws.com',
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'adminsortable',
     'django_summernote',
     'django.contrib.humanize',
+    'django_boost',
     
     
 ]
@@ -135,9 +136,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'account'
 LOGOUT_REDIRECT_URL = '/'
 
 NUMBER_GROUPING = 3
 
 AUTH_USER_MODEL = 'ec.CustomUser'
+

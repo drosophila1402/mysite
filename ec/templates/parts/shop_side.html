@@ -1,4 +1,5 @@
 {% load humanize %}
+{% load boost %}
 
 <div class="side-content">
     <h4 class="side-title">Category</h4>
@@ -9,28 +10,36 @@
 </div>
 <div class="side-content">
     <h4 class="side-title">Cart</h4>
-    {% for cart_product in cart_products %}
+    {% for cart_product, num in cart_products|zip:amount %}
         <div class="cart-product flex">
             <div class="col-xs-5">
                 <span class="image" style="background-image: url('{{ cart_product.image.url }}')"></span>
             </div>
             <div class="col-xs-7">
-                <a href="{%url 'product_detail' cart_product.id %}">{{ cart_product.name }}: ¥{{ cart_product.price | intcomma }}</a><a href="">削除</a>
+                <a href="{%url 'product_detail' cart_product.id %}">{{ cart_product.name }}: ¥{{ cart_product.price | intcomma }}</a>
+                <p>個数: {{ num }}</p>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <input type="number" name="number" value="{{ num }}" size="">
+                    <input type="hidden" name="product-id" value="{{ cart_product.id }}">
+                    <input type="submit" class="btn" name="update" value="変更">
+                </form>
+                <form method="post" action="{% url 'cart_delete' cart_product.id %}">
+                    {% csrf_token %}
+                    <input type="submit" class="btn" value="削除">
+                </form>
             </div>
         </div>
     {% empty %}
         <p>カートに商品がありません</p>
     {% endfor %}
-    
-    <p>amounts</p>
-    {% for num in amount %}
-    <p>{{ num }}</p>
-    {% endfor %}
-    
-    
     {% if total_price != 0 %}
         <p>Total price: ¥{{ total_price | intcomma}}<p>
+        <a href="{% url 'cart' %}">カートを見る</a>
     {% endif %}
+    
+
+    
 </div>
 <div class="side-content">
     <h4 class="side-title">Search</h4>
