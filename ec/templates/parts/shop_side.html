@@ -21,6 +21,13 @@
     {% empty %}
         <p>カートに商品がありません</p>
     {% endfor %}
+    
+    <p>amounts</p>
+    {% for num in amount %}
+    <p>{{ num }}</p>
+    {% endfor %}
+    
+    
     {% if total_price != 0 %}
         <p>Total price: ¥{{ total_price | intcomma}}<p>
     {% endif %}

@@ -30,6 +30,7 @@ def get_all_category():
   
 def cart_list(request):
     cart = request.session.get('cart')
+    amount = request.session.get('amount')
     if cart:
         products = []
         for product_id in cart:
@@ -45,7 +46,7 @@ def cart_list(request):
     for product in products:
         total_price += product.price
         
-    return products, total_price
+    return products, amount, total_price
 
 
 def paginating(request, products):
@@ -238,7 +239,7 @@ def account_edit(request):
 def product_detail(request, product_id):
     categories = Category.objects.all()
     product = get_object_or_404(Product, id=product_id)
-    cart_products, total_price = cart_list(request)
+    cart_products, amount, total_price = cart_list(request)
     title = product.name
     
     
@@ -246,6 +247,7 @@ def product_detail(request, product_id):
                'categories': categories,
                'title': title,
                'cart_products': cart_products,
+               'amount': amount,
                'total_price': total_price,}
     
     return render(request, 'ec/product_detail.html', context)
@@ -256,13 +258,14 @@ def category(request, category_id):
     categories = get_all_category()
     products = Product.objects.filter(category__id=category_id).order_by('-created_at')
     products = paginating(request, products)
-    cart_products, total_price = cart_list(request)
+    cart_products, amount, total_price = cart_list(request)
     title = category.name
     
     context = {'products': products,
                'title': title,
                'categories': categories,
                'cart_products': cart_products,
+               'amount': amount,
                'total_price': total_price}
     
     return render(request, 'ec/category.html', context)
@@ -281,7 +284,7 @@ class List(ListView):
     
 def shop(request):
     title = 'ONLINE SHOP'
-    cart_products, total_price = cart_list(request)
+    cart_products, amount, total_price = cart_list(request)
     categories = get_all_category()
     params = request.GET.copy()
     search_word = None
@@ -323,6 +326,7 @@ def shop(request):
                'categories': categories, 
                'title': title,
                'cart_products': cart_products,
+               'amount': amount,
                'total_price': total_price,
                'search_params': search_params,
                'search_word': search_word,
@@ -352,3 +356,40 @@ def fav_products(request, user_id):
     return render(request, 'ec/favorites.html', {'title': title, 'products': products})
     
 
+def cart_add2(request, product_id):
+    cart = request.session.get('cart', [])
+    
+    cart.append(product_id)
+    request.session['cart'] = cart
+    return redirect(request.META['HTTP_REFERER'])
+    
+    
+    
+def cart_add(request, product_id):
+    cart = request.session.get('cart', [])
+    amount = request.session.get('amount', [])
+    
+    if product_id not in cart:
+        cart.append(product_id)
+        amount.append(1)
+    else:
+        index = cart.index(product_id)
+        amount[index] += 1
+        
+    request.session['cart'] = cart
+    request.session['amount'] = amount
+    
+    return redirect(request.META['HTTP_REFERER'])
+    
+
+def cart(request):
+    title = 'CART'
+    cart_products, amount, total_price = cart_list(request)
+    context = {
+        'title': title,
+        'cart_products': cart_products,
+        'amount': amount,
+        'total_price': total_price,
+    }
+    
+    return render(request, 'ec/cart.html', context)

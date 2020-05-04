@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ec',
+    'cart',
     'adminsortable',
     'django_summernote',
     'django.contrib.humanize',

@@ -25,7 +25,7 @@ urlpatterns = [
     path('', include('ec.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('logout', views.LogoutView.as_view(), name='logout'),
-    # path('cart/', include('cart.urls')),
+    path('cart/', include('cart.urls')),
 ]
 
 # urlpatterns += staticfiles_urlpatterns()
