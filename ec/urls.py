@@ -23,9 +23,9 @@ urlpatterns = [
     path('shop/category/<int:category_id>', views.category, name='category'),
     path('product/<int:product_id>', views.product_detail, name='product_detail'),
     
-    path('favorite/<int:product_id>/', views.favorite_product, name='favorite'),
-    path('unfavorite/<int:product_id>/', views.unfavorite_product, name='unfavorite'),
-    path('favorites/<int:user_id>', views.fav_products, name='fav_products'),
+    path('favorite/<int:product_id>', views.favorite_product, name='favorite'),
+    path('unfavorite/<int:product_id>', views.unfavorite_product, name='unfavorite'),
+    path('favorites', views.faved_products, name='faved_products'),
     
     path('cart', views.cart, name='cart'),
     path('cart/<int:product_id>/add', views.cart_add, name='cart_add'),

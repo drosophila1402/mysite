@@ -1,6 +1,5 @@
 {% load humanize %}
-
-<form action="" method="get" class="form">
+<form action="" method="get" class="sort-box">
     <select name="orderby" class="form" onChange="this.form.submit()">
         <option name="" value="">並べ替え</option>
         <option name="newest" value="newest">新着順</option>
@@ -62,7 +61,7 @@
         <h3>No Item</h3>
     {% endfor %}
 </div>
-<div class="col-xs-12 paginator">
+<div class="col-xs-6 col-xs-offset-3 paginator">
     {% if products %}
         {% if products.has_previous %}
             <a href="?page={{ products.previous_page_number }}&{{ search_params }}"><< 前のページ</a>

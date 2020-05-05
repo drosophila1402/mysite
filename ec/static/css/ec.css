@@ -118,6 +118,9 @@ img {
     margin-left: 10px;
 }
 
+.side-content {
+    margin-bottom: 30px;
+}
 
 .side-content:hover .side-title {
     background: black;
@@ -140,11 +143,9 @@ img {
     color: gold;
 }
 
-.info {
-    border: 1px solid black;
-}
 
 .info {
+    border: 1px solid black;
     display: block;
     height: 0;
     width: 100%;
@@ -193,11 +194,17 @@ img {
 }
 
 .comment-area {
+    margin-top: 60px;
     border-top: 1px solid gray;
 }
 
 .comment {
     border-bottom: 1px solid gray;
+    padding: 20px 10px;
+}
+
+.non-comment {
+    padding: 20px 10px;
 }
 
 .clear-decoration {
@@ -210,14 +217,14 @@ img {
     font-size: 20px;
 }
 
-.button {
+.custom-btn {
     background: white;
     border-radius: 4px;
     border: 1px solid black;
     padding: 7px 20px;
 }
 
-.button:hover {
+.custom-btn:hover {
     background: black;
     color: white;
     transition: 1.0s;
@@ -234,4 +241,50 @@ img {
 
 .cart-product {
     margin-bottom: 10px;
+}
+
+form input, form textarea{
+    margin-bottom: 20px;
+}
+
+.sort-box {
+    padding: 15px;
+}
+
+.cart-image {
+    margin: 10px 0;
+}
+
+.cart-table {
+    border: 1px solid black;
+    margin-top: 50px;
+}
+
+table {
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+
+.trash {
+    font-size: 13px;
+}
+
+.trash-pos {
+    margin-top: 21px;   
+}
+
+.main-container {
+    margin-top: 50px;
+}
+
+.account-container {
+    margin-top: 20px;
+}
+
+.account-info td {
+    padding: 10px;
+}
+
+.edit-btn {
+    margin-bottom: 20px;
 }

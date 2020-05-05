@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class='col-xs-3 hidden-sm hidden-xs side-container'>
+        {% include 'parts/account_sidebar.html' %}
+    </div>
+    
+    <div class="col-xs-12 col-md-9 account-container">
+        {% block account_content %}
+        {% endblock %}
+    </div>
+    
+    <div class='col-xs-12 hidden-md hidden-lg side-container'>
+        {% include 'parts/account_sidebar.html' %}
+    </div>
+{% endblock %}

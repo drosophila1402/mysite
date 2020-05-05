@@ -48,6 +48,7 @@
                             {% endif %}
                             <span>/</span>
                             <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                            <a href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i></a>
                         </ul>
                     </div>
                 </div>
@@ -59,7 +60,6 @@
                     <div class="sub-title">
                         <h2>{% block title_bar %}{{ title }}{% endblock %}</h2>
                     </div>
-                    
                 </div>
                 <div class="row">
                     {% block content %}

@@ -1,4 +1,4 @@
-{% extends 'ec/account.html' %}
+{% extends 'base/account_base.html' %}
 
 {% load humanize %}
 
@@ -6,28 +6,13 @@
 {{ title }} | 傾着物
 {% endblock %}
 
-{% block product_list %}
-    <h2>アカウント情報 更新</h2>
-    <form method="POST">
+{% block account_content %}
+    <form method="post" class="col-xs-10 col-md-8 col-xs-offset-1 col-md-offset-0">
         {% csrf_token %}
-        <table>
-            <tr>
-                <td>username: </td>
-                <td>{{ form.username }}</td>
-            </tr>
-            <tr>
-                <td>email: </td>
-                <td>{{ form.email }}</td>
-            </tr>
-            <tr>
-                <td>first_name: </td>
-                <td>{{ form.first_name }}</td>
-            </tr>
-            <tr>
-                <td>last_name: </td>
-                <td>{{ form.last_name }}</td>
-            </tr>
-        </table>
-        <input type="submit" value="更新">
+        {% for field in form %}
+            <label>{{ field.label }}</label>
+            {{ field }}
+        {% endfor %}
+        <input type="submit" class="custom-btn" value="更新">
     </form>
 {% endblock %}

@@ -11,25 +11,40 @@
 
 {% block content %}
 <div class="col-xs-8 col-xs-offset-2">
-    {% for cart_product, num in cart_products|zip:amount %}
-        <div class="cart-product flex">
-            <div class="col-xs-5">
-                <span class="image" style="background-image: url('{{ cart_product.image.url }}')"></span>
-            </div>
-            <div class="col-xs-7">
-                <a href="{%url 'product_detail' cart_product.id %}">{{ cart_product.name }}: ¥{{ cart_product.price | intcomma }}</a>
-                <p>個数: {{ num }}</p>
-                <form method="post" action="{% url 'cart_delete' cart_product.id %}">
-                    {% csrf_token %}
-                    <input type="submit" class="btn" value="削除">
-                </form>
-            </div>
-        </div>
-        {% if total_price != 0 %}
-            <p>Total price: ¥{{ total_price | intcomma}}<p>
-        {% endif %}
-    {% empty %}
+    {% if cart_products %}
+     <table class="cart-table col-xs-12" rules="rows">
+        <tr>
+            <th class="col-xs-1"></th>
+            <th class="col-xs-1"></th>
+            <th class="col-xs-6 text-center">商品</th>
+            <th class="col-xs-1 text-center">価格</th>
+            <th class="col-xs-1 text-center">数量</th>
+        </tr>
+        {% for cart_product, num in cart_products|zip:amount %}
+            <tr>
+                <td>
+                    <form method="post" action="{% url 'cart_delete' cart_product.id %}" class="text-center">
+                        {% csrf_token %}
+                        <button type="submit" class="clear-decoration" value=""><i class="trash fas fa-trash"></i></button>
+                    </form>
+                </td>
+                <td>
+                    <div class="col-xs-12">
+                        <span class="image cart-image" style="background-image: url('{{ cart_product.image.url }}')"></span>
+                    </div>
+                </td>
+                <td><a href="{%url 'product_detail' cart_product.id %}">{{ cart_product.name }}</a></td>
+                <td class="text-center">¥{{ cart_product.price | intcomma }}</td>
+                <td class="text-center">{{ num }}</td>
+            </tr>
+        {% endfor %}
+    {% else %}
         <p>カートに商品がありません</p>
-    {% endfor %}
+    {% endif %}
+    </table>
+    {% if total_price != 0 %}
+        <p class="text-right">合計: ¥{{ total_price | intcomma }}<p>
+        <p class="text-right"><a href="{% url 'cart' %}" class="custom-btn">カートを見る</a></p>
+    {% endif %}
 </div>
 {% endblock %}

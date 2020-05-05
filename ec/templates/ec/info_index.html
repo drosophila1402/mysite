@@ -1,4 +1,4 @@
-{% extends 'base/news_base.html' %}
+{% extends 'base/main_base.html' %}
 
 {% block title %}
 {{ title }} | 傾着物
@@ -21,4 +21,12 @@
             </div>
         {% endif %}
     {% endfor %}
+{% endblock %}
+
+{% block side_content %}
+    {% include 'parts/info_sidebar.html' %}
+{% endblock %}
+    
+{% block below_content %}
+    {% include 'parts/info_sidebar.html' %}
 {% endblock %}

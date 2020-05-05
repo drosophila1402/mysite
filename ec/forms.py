@@ -65,22 +65,30 @@ class UserCreateForm(forms.ModelForm):
         
         
 class AccountForm(forms.ModelForm):
-    username = forms.CharField()
-    email = forms.EmailField(widget=forms.EmailInput())
-    first_name = forms.CharField(required=False)
-    last_name = forms.CharField(required=False)
+    username = forms.CharField(label='ユーザーID')
+    email = forms.EmailField(widget=forms.EmailInput(), label='メールアドレス')
+    last_name = forms.CharField(required=False, label='姓')
+    first_name = forms.CharField(required=False, label='名')
+    
+    def __init__(self, *arg, **kwargs):
+        super(AccountForm, self).__init__(*arg, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+            
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'first_name', 'last_name',)
+        fields = ('username', 'email', 'last_name', 'first_name')
         
         
 class CommentForm(forms.ModelForm):
     author = forms.CharField(label='投稿者')
     text = forms.CharField(label='本文', widget=forms.Textarea)
+    
     def __init__(self, *arg, **kwargs):
         super(CommentForm, self).__init__(*arg, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
+            
     class Meta:
         model = Comment
         fields = ('author', 'text')

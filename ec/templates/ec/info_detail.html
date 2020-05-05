@@ -1,4 +1,4 @@
-{% extends 'base/news_base.html' %}
+{% extends 'base/main_base.html' %}
 
 {% block title %}
 {{ title }} | 傾着物
@@ -7,20 +7,20 @@
 
 {% block main_content %}
     {% for category in info.category.all %}
-    <a class="btn btn-primary" href="{% url 'info_category' category.id %}">{{ category.name }}</a>
+    <a class="custom-btn" href="{% url 'info_category' category.id %}">{{ category.name }}</a>
     {% endfor %}
-    <p>{{ info.text | safe}}</p>
+    <p>{{ info.text | safe }}</p>
     <div class="comment-area">
-        {% for comment in info.comments.all %}
-            {% if not comment.approve %}
-                <div class="comment">
-                    <div class="date">{{ comment.created_date }}</div>
-                    <strong>{{ comment.author }}</strong>
-                    <p>{{ comment.text | linebreaks }}</p>
+        {% for comment in comments %}
+            <div class="comment">
+                <div class="row">
+                <strong class="col-xs-3">{{ comment.author }}</strong>
+                <div class="col-xs-9 text-right">{{ comment.created_at }}</div>
                 </div>
-            {% endif %}
+                <div>{{ comment.text | linebreaks }}</div>
+            </div>
         {% empty %}
-            <p>まだコメントはありません</p></p>
+            <p class="non-comment">まだコメントはありません (・_・、)</p>
         {% endfor %}
         <div class="row">
         <div class="col-xs-12 col-sm-6">
@@ -32,10 +32,17 @@
                 {{ field.errors }}
                 {{ field }}
             {% endfor %}
-            <input type="submit" class="save btn" value="送信"></input>
+            <input type="submit" class="save custom-btn" value="送信"></input>
         </form>
         </div>
         </div>
     </div>
 {% endblock %}
 
+{% block side_content %}
+    {% include 'parts/info_sidebar.html' %}
+{% endblock %}
+    
+{% block below_content %}
+    {% include 'parts/info_sidebar.html' %}
+{% endblock %}

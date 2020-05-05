@@ -16,7 +16,7 @@
         {% if login_form.errors %}
             <p class="error">ユーザーIDとパスワードが一致しません</p>
         {% endif %}
-        <input class="btn" type="submit" value="ログイン">
+        <input class="custom-btn" type="submit" value="ログイン">
     </form>
 </div>
 <div class="col-xs-12 col-sm-6">
@@ -28,7 +28,7 @@
             {{ field.errors }}
             {{ field }}
         {% endfor %}
-        <input type="submit" class="btn" value="登録">
+        <input type="submit" class="custom-btn" value="登録">
     </form>
 </div>
 {% endblock %}

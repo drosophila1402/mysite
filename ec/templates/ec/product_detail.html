@@ -60,7 +60,7 @@
                     {% if product.quantity != 0 %}
                     <form method="post" action="{% url 'cart_add' product.id %}">
                         {% csrf_token %}
-            	        <input type="submit" class="button" value="カートに追加">
+            	        <input type="submit" class="custom-btn" value="カートに追加">
             	    </form>
             	    {% else %}
                         <button type="" class="button">Sold out</button>

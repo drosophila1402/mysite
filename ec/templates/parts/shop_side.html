@@ -12,10 +12,10 @@
     <h4 class="side-title">Cart</h4>
     {% for cart_product, num in cart_products|zip:amount %}
         <div class="cart-product flex">
-            <div class="col-xs-4 row">
+            <div class="col-xs-4">
                 <span class="image" style="background-image: url('{{ cart_product.image.url }}')"></span>
             </div>
-            <div class="col-xs-7 cart-info">
+            <div class="col-xs-6 cart-info">
                 <h5><a href="{%url 'product_detail' cart_product.id %}">{{ cart_product.name }}</a></h5>
                 <span>{{ num }} × ¥{{ cart_product.price | intcomma }}</span>
                 <!--
@@ -30,7 +30,7 @@
             <div class="col-xs-1 cart-info">
                 <form method="post" action="{% url 'cart_delete' cart_product.id %}">
                     {% csrf_token %}
-                    <button type="submit" class="clear-decoration" value=""><i class="fas fa-trash"></i></button>
+                    <button type="submit" class="clear-decoration" value=""><i class="trash trash-pos fas fa-trash"></i></button>
                 </form>
             </div>
         </div>
@@ -38,8 +38,10 @@
         <p>カートに商品がありません</p>
     {% endfor %}
     {% if total_price != 0 %}
-        <p class="text-right">合計: ¥{{ total_price | intcomma }}<p>
-        <p class="text-right"><a href="{% url 'cart' %}" class="button">カートを見る</a></p>
+        <div class="">
+        <p class="col-xs-12 text-right">合計: ¥{{ total_price | intcomma }}<p>
+        <p class="text-right"><a href="{% url 'cart' %}" class="custom-btn">カートを見る</a></p>
+        </div>
     {% endif %}
     
 
@@ -48,7 +50,7 @@
 <div class="side-content">
     <h4 class="side-title">Search</h4>
     
-    <form method="get" class="">
+    <form method="get" class="" action="{% url 'shop' %}">
     	<input name="search" value="{{ request.GET.query }}" type="text" class="form-control" placeholder="商品検索">
     	<button class="hidden" type="submit">検索</button>
     </form>
