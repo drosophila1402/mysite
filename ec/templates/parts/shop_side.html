@@ -12,12 +12,12 @@
     <h4 class="side-title">Cart</h4>
     {% for cart_product, num in cart_products|zip:amount %}
         <div class="cart-product flex">
-            <div class="col-xs-3">
+            <div class="col-xs-4 row">
                 <span class="image" style="background-image: url('{{ cart_product.image.url }}')"></span>
             </div>
-            <div class="col-xs-7">
-                <a href="{%url 'product_detail' cart_product.id %}">{{ cart_product.name }}: ¥{{ cart_product.price | intcomma }}</a>
-                <p>個数: {{ num }}</p>
+            <div class="col-xs-7 cart-info">
+                <h5><a href="{%url 'product_detail' cart_product.id %}">{{ cart_product.name }}</a></h5>
+                <span>{{ num }} × ¥{{ cart_product.price | intcomma }}</span>
                 <!--
                 <form method="post" action="">
                     {% csrf_token %}
@@ -27,10 +27,10 @@
                 </form>
                 -->
             </div>
-            <div class="col-xs-1">
+            <div class="col-xs-1 cart-info">
                 <form method="post" action="{% url 'cart_delete' cart_product.id %}">
                     {% csrf_token %}
-                    <input type="submit" class="" value="✕">
+                    <button type="submit" class="clear-decoration" value=""><i class="fas fa-trash"></i></button>
                 </form>
             </div>
         </div>
@@ -38,8 +38,8 @@
         <p>カートに商品がありません</p>
     {% endfor %}
     {% if total_price != 0 %}
-        <p>Total price: ¥{{ total_price | intcomma}}<p>
-        <a href="{% url 'cart' %}">カートを見る</a>
+        <p class="text-right">合計: ¥{{ total_price | intcomma }}<p>
+        <p class="text-right"><a href="{% url 'cart' %}" class="button">カートを見る</a></p>
     {% endif %}
     
 
@@ -48,11 +48,9 @@
 <div class="side-content">
     <h4 class="side-title">Search</h4>
     
-    <form method="get" class="input-group">
+    <form method="get" class="">
     	<input name="search" value="{{ request.GET.query }}" type="text" class="form-control" placeholder="商品検索">
-    	<span class="input-group-btn">
-    		<button class="btn btn-default" type="submit">検索</button>
-    	</span>
+    	<button class="hidden" type="submit">検索</button>
     </form>
     
 </div>

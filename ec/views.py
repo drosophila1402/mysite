@@ -242,38 +242,7 @@ def account_edit(request):
 
 
 # shop pages
-class ProductDetailView(View):
-    def get(self, request, *args, **kwargs):
-        categories = Category.objects.all()
-        product = get_object_or_404(Product, id=product_id)
-        cart_products, amount, total_price = cart_list(request)
-        title = product.name
-        
-        context = {
-            'product': product,
-            'categories': categories,
-            'title': title,
-            'cart_products': cart_products,
-            'amount': amount,
-            'total_price': total_price,
-        }
-    
-        return render(request, 'ec/product_detail.html', context)
 
-    def post(self, request, *args, **kwargs):
-        
-        context = {
-            'product': product,
-            'categories': categories,
-            'title': title,
-            'cart_products': cart_products,
-            'amount': amount,
-            'total_price': total_price,
-            'number': request.POST['number'],
-        }
-        return render(request, 'ec/product_detail.html', context)
-
-product_detail = ProductDetailView.as_view()
 
 
 def product_detail(request, product_id):

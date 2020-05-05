@@ -136,7 +136,7 @@ img {
     background-size: contain;
 }
 
-.bi-star-fill {
+.faved {
     color: gold;
 }
 
@@ -173,14 +173,14 @@ img {
     position: relative;
 }
 
-.fav-btn {
+.hidden-btn {
     position: absolute;
     bottom: 0;
     right: 0;
     opacity: 0;
 }
 
-.img-container:hover .fav-btn {
+.img-container:hover .hidden-btn {
     opacity: 1;
 }
 
@@ -200,3 +200,38 @@ img {
     border-bottom: 1px solid gray;
 }
 
+.clear-decoration {
+    border: none;  /* 枠線を消す */
+    outline: none; /* クリックしたときに表示される枠線を消す */
+    background: transparent; /* 背景の灰色を消す */
+}
+
+.fav-btn {
+    font-size: 20px;
+}
+
+.button {
+    background: white;
+    border-radius: 4px;
+    border: 1px solid black;
+    padding: 7px 20px;
+}
+
+.button:hover {
+    background: black;
+    color: white;
+    transition: 1.0s;
+    text-decoration: none;
+}
+
+.cart-info {
+    padding-right: 0;
+}
+
+.cart-info button {
+    float: left;
+}
+
+.cart-product {
+    margin-bottom: 10px;
+}
