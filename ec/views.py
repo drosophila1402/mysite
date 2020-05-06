@@ -139,12 +139,12 @@ def info_detail(request, info_id):
 def info_category(request, category_id):
     category = InfoCategory.objects.get(id=category_id)
     news_categories = InfoCategory.objects.all()
-    category_infos = Info.objects.filter(category__id=category_id).order_by('-published_at')
+    infos = Info.objects.filter(category__id=category_id).order_by('-published_at')
     recents = Info.objects.filter(is_public=True).order_by('-published_at')
     title = category.name
     
     context = {
-        'category_infos': category_infos,
+        'infos': infos,
         'title': title,
         'recents': recents,
         'news_categories': news_categories
