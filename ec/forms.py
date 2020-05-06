@@ -35,6 +35,7 @@ class LoginForm(AuthenticationForm):
 
 class UserCreateForm(forms.ModelForm):
     username = forms.CharField(label='ユーザーID')
+    email = forms.EmailField(label='メールアドレス')
     password1 = forms.CharField(label='パスワード', widget=forms.PasswordInput)
     password2 = forms.CharField(
         label='パスワード（確認）', widget=forms.PasswordInput)
@@ -46,7 +47,7 @@ class UserCreateForm(forms.ModelForm):
             
     class Meta:
         model = CustomUser
-        fields = ('username','password1', 'password2' )
+        fields = ('username', 'email', 'password1', 'password2' )
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -67,8 +68,8 @@ class UserCreateForm(forms.ModelForm):
 class AccountForm(forms.ModelForm):
     username = forms.CharField(label='ユーザーID')
     email = forms.EmailField(widget=forms.EmailInput(), label='メールアドレス')
-    last_name = forms.CharField(required=False, label='姓')
-    first_name = forms.CharField(required=False, label='名')
+    last_name = forms.CharField(required=False, label='氏名')
+    first_name = forms.CharField(required=False, label='フリガナ')
     
     def __init__(self, *arg, **kwargs):
         super(AccountForm, self).__init__(*arg, **kwargs)

@@ -158,6 +158,7 @@ class InfoCategory(SortableMixin):
 class Info(models.Model):
     title = models.CharField(max_length=255, verbose_name='タイトル')
     text = models.TextField(verbose_name='本文')
+    primary_image = models.ImageField(upload_to='images', default='image3.png', verbose_name='トップ画像')
     category = models.ManyToManyField(InfoCategory, verbose_name='カテゴリ', blank=True)
     published_at = models.DateTimeField(default=timezone.now, verbose_name='公開日時')
     is_public = models.BooleanField('公開する', default=False, help_text='公開する場合はチェックを入れてください')

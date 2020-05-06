@@ -71,11 +71,11 @@ view関数
 
 def index(request):
     title = '傾奇者による傾奇者のための着物'
-    news = Info.objects.filter(is_public=True).order_by('-published_at')
+    infos = Info.objects.filter(is_public=True).order_by('-published_at')
     
     context = {
         'title': title,
-        'news': news
+        'infos': infos
         
     }
     
@@ -263,8 +263,14 @@ account_login = Account_login.as_view()
 
 
 def account_delete(request):
-    pass
-
+    user = get_object_or_404(CustomUser, id=request.user.id)
+    if user.is_staff == False:
+        user.is_active = False
+        user.save()
+        return redirect('/')
+    else:
+        return redirect('account')
+    
 
 def account_info(request):
     title = 'ACCOUNT INFO'

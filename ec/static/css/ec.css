@@ -150,6 +150,8 @@ img {
     height: 0;
     width: 100%;
     padding-bottom: 50%;
+    margin-bottom: 30px;
+    position: relative;
 }
 
 .price {
@@ -274,7 +276,7 @@ table {
 }
 
 .main-container {
-    margin-top: 50px;
+    margin-top: 15px;
 }
 
 .account-container {
@@ -288,3 +290,44 @@ table {
 .edit-btn {
     margin-bottom: 20px;
 }
+
+.confirm-btn {
+    float: left;
+}
+
+.close-btn {
+    margin-top: 70px;
+}
+
+.info {
+    border: 1px solid black;
+    display: block;
+    height: 0;
+    width: 100%;
+    padding-bottom: 75%;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.info-image {
+    display: inline-block;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding-bottom: 75%;
+    border: 1px solid #ccc;
+    background-size: cover;
+}
+
+
+.info-title {
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    
+}
+
+

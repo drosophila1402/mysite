@@ -1,0 +1,19 @@
+<!--
+{% extends 'base/account_base.html' %}
+
+{% block title %}{{ title }} | 傾着物{% endblock %}
+
+{% block account_content %}
+    <h2>アカウントを削除しますか？</h2>
+    <div class="confirm-btn">
+        <a href="{% url 'account' %}" class="custom-btn close-btn">閉じる</a>
+    </div>
+    <div class="confirm-btn">
+        <form method="post">
+        {% csrf_token %}
+        <input type="submit" class="custom-btn" value="削除">
+        </form>
+    </div>
+    </div>
+    
+{% endblock %}

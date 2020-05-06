@@ -10,13 +10,35 @@
         {% if forloop.first %}
             <div class="col-xs-12">
                 <div class="info">
-                    <h3><a href='{% url 'info_detail' info.id %}'>{{ info.title }}</a></h3>
+                    <a href='{% url 'info_detail' info.id %}'>
+                        <p class="info-image" style="background-image: url('{{ info.primary_image.url }}')"></p>
+                        <div class="info-title">
+                            <h3 class="text-center">{{ info.title }}</h3>
+                            <p class="text-center">{{ info.published_at }} / 
+                            {% for category in info.category.all %}
+                            {{ category.name }}, 
+                            {% endfor %}
+                            <div class="text-center">{{ info.text | safe |truncatechars:50}}</div>
+                            </p>
+                        </div>
+                    </a>
                 </div>
             </div>
         {% else %}
             <div class="col-xs-12 col-sm-6">
                 <div class="info">
-                    <p><a href='{% url 'info_detail' info.id %}'>{{ info.title }}</a></p>
+                    <a href='{% url 'info_detail' info.id %}'>
+                        <p class="info-image" style="background-image: url('{{ info.primary_image.url }}')"></p>
+                        <div class="info-title">
+                            <h3 class="text-center">{{ info.title }}</h3>
+                            <p class="text-center">{{ info.published_at }} / 
+                            {% for category in info.category.all %}
+                            {{ category.name }}, 
+                            {% endfor %}
+                            <div class="text-center">{{ info.text | safe |truncatechars:50}}</div>
+                            </p>
+                        </div>
+                    </a>
                 </div>
             </div>
         {% endif %}

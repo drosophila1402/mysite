@@ -39,7 +39,8 @@
             </tr>
         {% endfor %}
     {% else %}
-        <p>カートに商品がありません</p>
+        <h3 class="text-center">カートに商品がありません</h3>
+        <p class=""><a href="{% url 'shop' %}" class="custom-btn">ショップに戻る</a></p>
     {% endif %}
     </table>
     {% if total_price != 0 %}
