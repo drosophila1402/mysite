@@ -7,11 +7,26 @@
 
 {% block main_content %}
     {% for info in category_infos %}
-        <div class="col-xs-12 col-sm-6">
-            <div class="info">
-                <p><a href='{% url 'info_detail' info.id %}'>{{ info.title }}</a></p>
+            <div class="col-xs-12 col-sm-6">
+                <div class="info">
+                    <a href='{% url 'info_detail' info.id %}'>
+                        <p class="info-image" style="background-image: url('{{ info.primary_image.url }}')"></p>
+                        <div class="info-title">
+                            <h3 class="text-center">{{ info.title }}</h3>
+                            <div class="text-center">{{ info.published_at }} / 
+                                {% for category in info.category.all %}
+                                    {% if forloop.last %}
+                                        {{ category.name }}
+                                    {% else %}
+                                        {{ category.name }}, 
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="text-center">{{ info.text | safe |truncatechars:50}}</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
     {% endfor %}
 {% endblock %}
 

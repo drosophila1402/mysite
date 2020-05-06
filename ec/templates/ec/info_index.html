@@ -14,12 +14,16 @@
                         <p class="info-image" style="background-image: url('{{ info.primary_image.url }}')"></p>
                         <div class="info-title">
                             <h3 class="text-center">{{ info.title }}</h3>
-                            <p class="text-center">{{ info.published_at }} / 
-                            {% for category in info.category.all %}
-                            {{ category.name }}, 
-                            {% endfor %}
-                            <div class="text-center">{{ info.text | safe |truncatechars:50}}</div>
-                            </p>
+                            <div class="text-center">{{ info.published_at }} / 
+                                {% for category in info.category.all %}
+                                    {% if forloop.last %}
+                                        {{ category.name }}
+                                    {% else %}
+                                        {{ category.name }}, 
+                                    {% endif %}
+                                {% endfor %}
+                                <p class="text-center">{{ info.text | safe | truncatechars:50}}</p>
+                            </div>
                         </div>
                     </a>
                 </div>
@@ -31,12 +35,16 @@
                         <p class="info-image" style="background-image: url('{{ info.primary_image.url }}')"></p>
                         <div class="info-title">
                             <h3 class="text-center">{{ info.title }}</h3>
-                            <p class="text-center">{{ info.published_at }} / 
-                            {% for category in info.category.all %}
-                            {{ category.name }}, 
-                            {% endfor %}
-                            <div class="text-center">{{ info.text | safe |truncatechars:50}}</div>
-                            </p>
+                            <div class="text-center">{{ info.published_at }} / 
+                                {% for category in info.category.all %}
+                                    {% if forloop.last %}
+                                        {{ category.name }}
+                                    {% else %}
+                                        {{ category.name }}, 
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="text-center">{{ info.text | safe | truncatechars:50}}</div>
+                            </div>
                         </div>
                     </a>
                 </div>

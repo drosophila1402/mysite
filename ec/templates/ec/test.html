@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/ec.css' %}">
+        
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        
+        
+        <title>{% block title %}傾着物{% endblock %}</title>
+
+    </head>
+    <body>
+        <header>  
+            <div class="container">
+                <div class="row header-logo">
+                    {% if user.is_authenticated %}
+                    <h1 class="col-xs-12"><a href="{% url 'index' %}" class="">傾着物</a></h1>
+                    {% else %}
+                    <h1 class="col-xs-12"><a href="{% url 'index' %}" class="">傾着物</a></h1>
+                    {% endif %}
+                </div>
+                <p class="underline"></p>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-10 col-sm-offset-1 header-list">
+                        <ul class=''>
+                            <li><a href="{% url 'index' %}">TOP</a></li>
+                            <span>/</span>
+                            <li><a href="{% url 'about' %}">ABOUT</a></li>
+                            <span>/</span>
+                            <li><a href="{% url 'info_index' %}">NEWS</a></li>
+                            <span>/</span>
+                            <li><a href="{% url 'shop' %}">ONLINE SHOP</a></li>
+                            <span>/</span>
+                            {% if user.is_authenticated %}
+                                <li><a href="{% url 'account'%}">ACCOUNT</a></li>
+                            {% else %}
+                                <li><a href="{% url 'login' %}">LOGIN</a></li>
+                            {% endif %}
+                            <span>/</span>
+                            <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                            <a href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i></a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class= "container">
+                <div class="row">
+                    <div class="sub-title">
+                        <h2>{% block title_bar %}{{ title }}{% endblock %}</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-9 main-container">
+                            {% for info in infos %}
+                                {% if forloop.first %}
+                                    <div class="col-xs-12">
+                                        <div class="info">
+                                            <a href='{% url 'info_detail' info.id %}'>
+                                                <p class="info-image" style="background-image: url('{{ info.primary_image.url }}')"></p>
+                                                <div class="info-title">
+                                                    <h3 class="text-center">{{ info.title }}</h3>
+                                                    <p class="text-center">{{ info.published_at }} / 
+                                                    {% for category in info.category.all %}
+                                                    {{ category.name }}, 
+                                                    {% endfor %}
+                                                    <div class="text-center">{{ info.text | safe |truncatechars:50}}</div>
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="info">
+                                            <a href='{% url 'info_detail' info.id %}'>
+                                                <p class="info-image" style="background-image: url('{{ info.primary_image.url }}')"></p>
+                                                <div class="info-title">
+                                                    <h3 class="text-center">{{ info.title }}</h3>
+                                                    <p class="text-center">{{ info.published_at }} / 
+                                                    {% for category in info.category.all %}
+                                                    {{ category.name }}, 
+                                                    {% endfor %}
+                                                    <div class="text-center">{{ info.text | safe |truncatechars:50}}</div>
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                    </div>
+                    <div class='col-xs-3 hidden-sm hidden-xs side-container'>
+                            <div class="side-content">
+                                <h4 class="side-title">Recent Posts</h4>
+                                {% for recent in recents %}
+                                    <p><a href='{% url 'info_detail' recent.id %}'>{{ recent.title }}</a></p>
+                                {% endfor %}
+                            </div>
+                            <div class="side-content">
+                                <h4 class="side-title">Category</h4>
+                                {% for news_category in news_categories %}
+                                    <p><a href="{% url 'info_category' news_category.id %}">{{ news_category.name }}</a></p>
+                                {% endfor %}
+                            </div>
+                            <div class="side-content">
+                                <h4 class="side-title">Archive</h4>
+                            </div>
+                    </div>
+                    <div class='col-xs-12 hidden-md hidden-lg side-container'>
+                            <div class="side-content">
+                                <h4 class="side-title">Recent Posts</h4>
+                                {% for recent in recents %}
+                                    <p><a href='{% url 'info_detail' recent.id %}'>{{ recent.title }}</a></p>
+                                {% endfor %}
+                            </div>
+                            <div class="side-content">
+                                <h4 class="side-title">Category</h4>
+                                {% for news_category in news_categories %}
+                                    <p><a href="{% url 'info_category' news_category.id %}">{{ news_category.name }}</a></p>
+                                {% endfor %}
+                            </div>
+                            <div class="side-content">
+                                <h4 class="side-title">Archive</h4>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="container">
+                
+                <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+                    <ul class="">
+                        <li><a href="">ご利用規約</a></li>
+                        <span>/</span>
+                        <li><a href="">特定商取引法に基づく表記</a></li>
+                        <span>/</span>
+                        <li><a href="">プライバシーポリシー</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
