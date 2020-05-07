@@ -1,17 +1,23 @@
 {% extends 'base/main_base.html' %}
 
+{% block title_bar %}
+<div class="top-image-container">
+    <image src="media/images/image3_iWSQ6lT.png" class="top-image"></image>
+</div>
+{% endblock %}
+
 {% block main_content %}
-    <h2>News</h2>
+    <h2 class="news-title">News</h2>
     {% include 'parts/info_container.html' %}
 {% endblock %}
 
 {% block side_content %}
-<a class="twitter-timeline" data-height="1000" href="https://twitter.com/Death_Tod?ref_src=twsrc%5Etfw">最新情報随時公開中</a>
+<a class="twitter-timeline" href="https://twitter.com/Samport__?ref_src=twsrc%5Etfw">Tweets by Samport__</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 {% endblock %}
 
 {% block below_content %}
-<a class="twitter-timeline" data-height="1000" href="https://twitter.com/Death_Tod?ref_src=twsrc%5Etfw">最新情報随時公開中</a>
+<a class="twitter-timeline" href="https://twitter.com/Samport__?ref_src=twsrc%5Etfw">Tweets by Samport__</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 {% endblock %}
         

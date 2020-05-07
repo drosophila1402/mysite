@@ -23,11 +23,7 @@
         <header>  
             <div class="container">
                 <div class="row header-logo">
-                    {% if user.is_authenticated %}
-                    <h1 class="col-xs-12"><a href="{% url 'index' %}" class="">傾着物</a></h1>
-                    {% else %}
-                    <h1 class="col-xs-12"><a href="{% url 'index' %}" class="">傾着物</a></h1>
-                    {% endif %}
+                    <h1 class="col-xs-12"><a href="{% url 'index' %}" class="">着物販売サイト</a></h1>
                 </div>
                 <p class="underline"></p>
                 <div class="row">

@@ -44,8 +44,23 @@
     {% endif %}
     </table>
     {% if total_price != 0 %}
-        <p class="text-right">合計: ¥{{ total_price | intcomma }}<p>
-        <p class="text-right"><a href="{% url 'cart' %}" class="custom-btn">カートを見る</a></p>
+        <div class="sum-table">
+            <table class="col-xs-6 col-xs-offset-6" rules="rows">
+                <tr>
+                    <td>小計</td>
+                    <td>¥{{ total_price | intcomma }}</td>
+                </tr>
+                <tr>
+                    <td>送料</td>
+                    <td>無料</td>
+                </tr>
+                <tr>
+                    <td>合計</td>
+                    <td>¥{{ total_price | intcomma }}</td>
+                </tr>
+            </table>
+        </div>
+        <p class="text-right" ><a href="{% url 'cart' %}" class="buy-btn custom-btn">購入手続き</a></p>
     {% endif %}
 </div>
 {% endblock %}

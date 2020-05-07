@@ -1,0 +1,26 @@
+<div class="fav-btn">
+    {% if user.is_authenticated %}
+        {% if product in user.favorite_products.all %}
+            <form action="{% url 'unfavorite' product.id %}" method="post">
+                <button type="submit" name="button" class="clear-decoration">
+                    <i class="fas fa-star faved"></i>
+                </button>
+                {% csrf_token %}
+            </form>
+        {% else %}
+            <form action="{% url 'favorite' product.id %}" method="post">
+                <button type="submit" name="button" class="clear-decoration">
+                    <i class="far fa-star"></i>
+                </button>
+                {% csrf_token %}
+            </form>
+        {% endif %}
+    {% else %}
+    <a href="{% url 'login' %}">
+        <button type="submit" name="button" class="clear-decoration">
+            <i class="far fa-star"></i>
+        </button>
+        {% csrf_token %}
+    </a>
+    {% endif %}
+</div>

@@ -1,80 +1,57 @@
 {% load humanize %}
-<form action="" method="get" class="sort-box">
-    <select name="orderby" class="form" onChange="this.form.submit()">
-        <option name="" value="">並べ替え</option>
-        <option name="newest" value="newest">新着順</option>
-        <option name="price-asc" value="price-asc"  class="form">価格 昇順</option>
-        <option name="price-des" value="price-des">価格 降順</option>
-    </select>
-</form>
+<div class="row">
+    <form action="" method="get" class="sort-box pull-right">
+        <select name="orderby" class="form" onChange="this.form.submit()">
+            <option name="" value="">並べ替え</option>
+            <option name="newest" value="newest">新着順</option>
+            <option name="price-asc" value="price-asc"  class="form">価格 昇順</option>
+            <option name="price-des" value="price-des">価格 降順</option>
+        </select>
+    </form>
+</div>
 <div class="flex">
-    {% for product in products %}
-        <div class='col-xs-6 col-sm-4 col-lg-3 product'>
-            <div class=" image-area">
-                <a href='{% url 'product_detail' product.id %}'>
-                    <div class="img-container">
-                        <p class="image" style="background-image: url('{{ product.image.url }}')"></p>
-                        <!--お気に入りボタン-->
-                        <div class="hidden-btn">
-                            <div class="fav-btn">
-                                {% if user.is_authenticated %}
-                                    {% if product in user.favorite_products.all %}
-                                        <form action="{% url 'unfavorite' product.id %}" method="post">
-                                            <button type="submit" name="button" class="clear-decoration">
-                                                <i class="fas fa-star faved"></i>
-                                            </button>
-                                            {% csrf_token %}
-                                        </form>
-                                    {% else %}
-                                        <form action="{% url 'favorite' product.id %}" method="post">
-                                            <button type="submit" name="button" class="clear-decoration">
-                                                <i class="far fa-star"></i>
-                                            </button>
-                                            {% csrf_token %}
-                                        </form>
-                                    {% endif %}
-                                {% else %}
-                                <a href="{% url 'login' %}">
-                                    <button type="submit" name="button" class="clear-decoration">
-                                        <i class="far fa-star"></i>
-                                    </button>
-                                    {% csrf_token %}
-                                </a>
-                                {% endif %}
+        {% for product in products %}
+            <div class='col-xs-6 col-sm-4 col-lg-3 product'>
+                <div class=" image-area">
+                    <a href='{% url 'product_detail' product.id %}'>
+                        <div class="img-container">
+                            <p class="image" style="background-image: url('{{ product.image.url }}')"></p>
+                            <div class="hidden-btn hidden-xs hidden-sm">
+                                {% include 'parts/fav_btn.html' %}
                             </div>
                         </div>
-                    <!--お気に入りボタンここまで-->
-                    </div>
-                    <div class="">
-                        <h5>{{ product.name }}</h5>
-                        {% if product.quantity == 0 %}
-                            <p>SOLD OUT</p>
-                        {% else %}
-                            <p class="price">¥{{ product.price | intcomma }}</p>
-                        {% endif %}
-                        
-                    </div>
-                </a>
+                        <div class="col-xs-10">
+                            <h4>{{ product.name }}</h4>
+                            {% if product.quantity == 0 %}
+                                <p>SOLD OUT</p>
+                            {% else %}
+                                <p class="price">¥{{ product.price | intcomma }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-xs-1 hidden-md hidden-lg">
+                            {% include 'parts/fav_btn.html' %}
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
-    {% empty %}
-        <h3>No Item</h3>
-    {% endfor %}
-</div>
-<div class="col-xs-6 col-xs-offset-3 paginator">
-    {% if products %}
-        {% if products.has_previous %}
-            <a href="?page={{ products.previous_page_number }}&{{ search_params }}"><< 前のページ</a>
-        {% else %}
-            <span>前のページ</span>
+        {% empty %}
+            <h3>No Item</h3>
+        {% endfor %}
+    <div class="col-xs-6 col-xs-offset-3 paginator">
+        {% if products %}
+            {% if products.has_previous %}
+                <a href="?page={{ products.previous_page_number }}&{{ search_params }}"><< 前のページ</a>
+            {% else %}
+                <span>前のページ</span>
+            {% endif %}
+            
+            {{ products.number }} / {{ products.paginator.num_pages }}
+            
+            {% if products.has_next %}
+                <a href="?page={{ products.next_page_number }}&{{ search_params }}">次のページ >></a>
+            {% else %}
+                <span>次のページ</span>
+            {% endif %}
         {% endif %}
-        
-        {{ products.number }} / {{ products.paginator.num_pages }}
-        
-        {% if products.has_next %}
-            <a href="?page={{ products.next_page_number }}&{{ search_params }}">次のページ >></a>
-        {% else %}
-            <span>次のページ</span>
-        {% endif %}
-    {% endif %}
+    </div>
 </div>

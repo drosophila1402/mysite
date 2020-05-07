@@ -104,10 +104,6 @@ main {
 }
 
 
-img {
-    border: 1px solid black;
-}
-
 .show-all a {
     border: 1px solid black;
     display: block;
@@ -145,7 +141,6 @@ img {
 
 
 .info {
-    border: 1px solid black;
     display: block;
     height: 0;
     width: 100%;
@@ -170,6 +165,7 @@ img {
     position: absolute;
     bottom: 0;
     text-align: center;
+    margin-top: 30px;
 }
 
 .img-container {
@@ -250,7 +246,7 @@ form input, form textarea{
 }
 
 .sort-box {
-    padding: 15px;
+    padding: 15px 30px 15px 15px;
 }
 
 .cart-image {
@@ -300,7 +296,6 @@ table {
 }
 
 .info {
-    border: 1px solid black;
     display: block;
     height: 0;
     width: 100%;
@@ -315,7 +310,6 @@ table {
     background-repeat: no-repeat;
     width: 100%;
     padding-bottom: 75%;
-    border: 1px solid #ccc;
     background-size: cover;
 }
 
@@ -331,3 +325,35 @@ table {
 }
 
 
+.product-detail-container {
+    margin-top: 15px;
+}
+
+.top-image {
+    width: 100%;
+}
+
+.news-title {
+    margin-left: 15px;
+}
+
+.product-label {
+    border-bottom: 1px dashed black;
+}
+
+.description-parts {
+    margin-bottom: 30px;
+}
+
+.add-to-cart, .custom-btn {
+    margin-left: 15px;
+}
+
+.sum-table td {
+    padding: 5px;
+}
+
+.buy-btn {
+    display: inline-block;
+    
+}
